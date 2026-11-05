@@ -1,0 +1,90 @@
+# Configuração do experimento — Face (CFP-FP principal, LFW secundário)
+# Rede: ResNet50 (torchvision, pesos ImageNet) + cabeça de embedding + ArcFace
+
+project:
+  modality: face
+  team: dupla_2
+  seed: 42
+  device: cuda            # cai para cpu automaticamente se não houver GPU
+
+paths:
+  protocols_dir: ./protocols
+  results_dir: ./results
+  checkpoints_dir: ./checkpoints
+
+datasets:
+  primary:
+    name: cfp_fp
+    raw_path: ./data/cfp-dataset          # pasta que contém Data/ e Protocol/
+    processed_path: ./data/processed/cfp_fp
+  secondary:
+    name: lfw
+    raw_path: ./data/lfw-deepfunneled     # pasta que contém uma subpasta por pessoa
+    pairs_dir: ./data/lfw                 # pasta com matchpairsDevTest.csv e mismatchpairsDevTest.csv
+    processed_path: ./data/processed/lfw
+
+protocol:
+  # Pares e folds oficiais do CFP (FP). Os folds são disjuntos por identidade.
+  train_folds: [1, 2, 3, 4, 5, 6]
+  val_folds: [7, 8]
+  test_folds: [9, 10]
+
+preprocessing:
+  steps: [detect, align, crop, normalize]
+  image_size: 112
+  detector_model: ./models/face_detection_yunet_2023mar.onnx
+  detector_url: https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
+  detector_score_threshold: 0.6
+  fallback: center_crop     # usado quando o detector falha (conta como FTA)
+  normalize_mean: [0.485, 0.456, 0.406]   # ImageNet
+  normalize_std: [0.229, 0.224, 0.225]
+
+model:
+  architecture: resnet50
+  pretrained: true
+  weights: IMAGENET1K_V1
+  weights_source: torchvision
+  pretrain_dataset: ImageNet-1k
+  embedding_dim: 512
+  dropout: 0.4
+  freeze_layers: [conv1, bn1, layer1, layer2]
+  trainable_layers: layer3, layer4, embedding head
+  l2_normalize: true
+
+training:
+  loss: arcface
+  arcface_scale: 30.0
+  arcface_margin: 0.5
+  optimizer: adam
+  learning_rate: 0.0001
+  head_lr_multiplier: 10    # cabeça de embedding e ArcFace aprendem 10x mais rápido
+  weight_decay: 0.0005
+  batch_size: 32
+  epochs: 20
+  early_stopping_patience: 4
+  num_workers: 2            # use 0 se estiver no Windows e der erro de multiprocessing
+
+matching:
+  metric: cosine
+
+threshold:
+  selected_on: validation   # nunca teste
+  criterion: eer
+  file: results/threshold.json   # escrito por evaluate.py e depois congelado
+
+evaluation:
+  far_target: 0.01
+  inference_runs: 50
+
+cross_dataset:
+  enabled: true
+  fine_tune_on_target: false
+
+robustness:
+  perturbations: [blur, occlusion]
+  levels:                   # original, baixa, média, alta
+    blur_sigma: [0, 1.5, 3.0, 5.0]
+    occlusion_fraction: [0.0, 0.2, 0.35, 0.5]   # lado do quadrado preto central / lado da imagem
+
+ablation:
+  step_removed: alignment   # python preprocess.py --no-align  +  evaluate.py --processed-suffix _noalign --frozen
