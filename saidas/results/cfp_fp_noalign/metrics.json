@@ -1,0 +1,21 @@
+{
+  "tag": "cfp_fp_noalign",
+  "dataset": "CFP-FP (sem alinhamento)",
+  "cnn": "resnet50",
+  "pretrain": "ImageNet-1k",
+  "embedding_dim": 512,
+  "matching": "cosine",
+  "seed": 42,
+  "metrics": {
+    "eer": 0.2728571428571428,
+    "auc": 0.7966469387755102,
+    "fmr": 0.3871428571428571,
+    "fnmr": 0.21142857142857144,
+    "tar_at_far_1pct": 0.14857142857142858,
+    "accuracy_at_threshold": 0.7007142857142857,
+    "threshold": 0.13629400730133057,
+    "n_genuine": 700,
+    "n_impostor": 700
+  },
+  "fta": 0.0
+}

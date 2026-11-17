@@ -1,0 +1,7 @@
+{
+  "threshold": 0.13629400730133057,
+  "criterion": "eer",
+  "selected_on": "validation",
+  "val_eer": 0.1985714285714286,
+  "seed": 42
+}

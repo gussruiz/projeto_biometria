@@ -1,0 +1,6 @@
+{
+  "num_params": 24558144,
+  "model_size_mb": 98.56,
+  "inference_ms_per_image": 5.617,
+  "hardware": "NVIDIA GeForce RTX 3050 Ti Laptop GPU"
+}

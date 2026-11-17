@@ -1,0 +1,21 @@
+{
+  "tag": "lfw_cross",
+  "dataset": "LFW (cross-dataset)",
+  "cnn": "resnet50",
+  "pretrain": "ImageNet-1k",
+  "embedding_dim": 512,
+  "matching": "cosine",
+  "seed": 42,
+  "metrics": {
+    "eer": 0.18500000000000003,
+    "auc": 0.9060279999999998,
+    "fmr": 0.586,
+    "fnmr": 0.026,
+    "tar_at_far_1pct": 0.316,
+    "accuracy_at_threshold": 0.694,
+    "threshold": 0.13629400730133057,
+    "n_genuine": 500,
+    "n_impostor": 500
+  },
+  "fta": 0.0
+}

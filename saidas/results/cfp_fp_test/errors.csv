@@ -1,0 +1,7 @@
+erro,amostra_1,amostra_2,score,threshold
+falso match,457/frontal/03.jpg,477/profile/01.jpg,0.46960568,0.13629400730133057
+falso match,427/frontal/10.jpg,404/profile/04.jpg,0.46160996,0.13629400730133057
+falso match,442/frontal/04.jpg,413/profile/04.jpg,0.4587242,0.13629400730133057
+falso non-match,465/frontal/09.jpg,465/profile/03.jpg,-0.2407932,0.13629400730133057
+falso non-match,427/frontal/09.jpg,427/profile/03.jpg,-0.1977219,0.13629400730133057
+falso non-match,463/frontal/06.jpg,463/profile/03.jpg,-0.19623092,0.13629400730133057

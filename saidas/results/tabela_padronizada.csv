@@ -1,0 +1,18 @@
+Informação,CFP-FP (teste),LFW (cross-dataset)
+Modalidade,Face,Face
+Dataset,CFP-FP,LFW
+CNN,ResNet50,ResNet50
+Pré-treinamento,ImageNet-1k,ImageNet-1k
+Nº de parâmetros,"24,558,144","24,558,144"
+Dimensão do embedding,512,512
+Matching,Cosseno,Cosseno
+Threshold (definido na validação),0.1363,0.1363 (congelado)
+EER,0.2129,0.1850
+AUC,0.8644,0.9060
+FMR,0.2371,0.5860
+FNMR,0.1957,0.0260
+TAR@FAR=1%,0.2500,0.3160
+FTA,0.0034,0.0000
+Tempo de inferência (ms/img),5.617,5.617
+Tamanho do modelo (MB),98.56,98.56
+Hardware,NVIDIA GeForce RTX 3050 Ti Laptop GPU,NVIDIA GeForce RTX 3050 Ti Laptop GPU
