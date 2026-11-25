@@ -1,0 +1,28 @@
+{
+  "seed": 42,
+  "best_epoch": 6,
+  "val_eer": 0.1985714285714286,
+  "threshold": 0.13629400730133057,
+  "cfp_fp_test": {
+    "eer": 0.21285714285714286,
+    "auc": 0.8644244897959185,
+    "fmr": 0.23714285714285716,
+    "fnmr": 0.1957142857142857,
+    "tar_at_far_1pct": 0.25,
+    "accuracy_at_threshold": 0.7835714285714286,
+    "threshold": 0.13629400730133057,
+    "n_genuine": 700,
+    "n_impostor": 700
+  },
+  "lfw_devtest": {
+    "eer": 0.18500000000000003,
+    "auc": 0.9060279999999998,
+    "fmr": 0.586,
+    "fnmr": 0.026,
+    "tar_at_far_1pct": 0.316,
+    "accuracy_at_threshold": 0.694,
+    "threshold": 0.13629400730133057,
+    "n_genuine": 500,
+    "n_impostor": 500
+  }
+}
