@@ -22,7 +22,3 @@ Os datasets não estão incluídos neste repositório. Obtenha-os nos links ofic
 ### Uso e citação
 
 Este projeto é de uso público, mas deve ser citado ao ser utilizado.
-
-Como citar:
-
-> [Autores]. [Título do artigo]. [Ano]. [Link do artigo ou do repositório]
